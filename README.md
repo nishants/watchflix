@@ -1,9 +1,22 @@
 [![Build Status](https://travis-ci.org/nishants/node-playground.svg?branch=master)](https://travis-ci.org/nishants/node-playground)
 
+# DB Setup
+### 1. Setup movies seed
+```bash
+yarn seed -- --movies=path/to/file.csv'
+```
+### 2. Setup credits seed
+```bash
+yarn seed -- --credits=path/to/file.csv'
+```
+
+Running with docker
 Run development server with docker
 ```bash
 bash bin/development.sh
 ```
+
+
 
 Running withour docker :
   - Set the mongo db uri
