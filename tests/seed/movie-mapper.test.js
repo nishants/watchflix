@@ -29,6 +29,27 @@ describe("Seed movies", ()=> {
       "Avatar",
       7.2,
       11800
+    ],
+    rowWithMultipleHomepages = [
+      0,
+      "[{\"id\": 53, \"name\": \"Thriller\"}, {\"id\": 9648, \"name\": \"Mystery\"}, {\"id\": 878, \"name\": \"Science Fiction\"}]",
+      "http://www.cargoderfilm.ch http://cargothemovie.com",
+      34069,
+      "[{\"id\": 3388, \"name\": \"space colony\"}, {\"id\": 3801, \"name\": \"space travel\"}, {\"id\": 3972, \"name\": \"simulated reality \"}, {\"id\": 9831, \"name\": \"spaceship\"}, {\"id\": 9937, \"name\": \"suspense\"}, {\"id\": 158022, \"name\": \"cargo ship\"}, {\"id\": 193149, \"name\": \"suspended animation\"}, {\"id\": 210367, \"name\": \"loneliness in space\"}]",
+      "de",
+      "Cargo",
+      "The story of CARGO takes place on rusty space-freighter KASSANDRA on its way to Station 42. The young medic LAURA is the only one awake on board while the rest of the crew lies frozen in hibernation sleep. In 4 months will Laura's shift be over.,10.142218",
+      ,
+      "[{\"name\": \"Telepool\", \"id\": 823}, {\"name\": \"Atlantis Pictures\", \"id\": 5564}, {\"name\": \"Schweizerische Radio- und Fernsehgesellschaft (SRG)\", \"id\": 23072}, {\"name\": \"Ascot Elite Entertainment Group\", \"id\": 26025}, {\"name\": \"Egli Film\", \"id\": 26026}, {\"name\": \"Teleclub AG\", \"id\": 26027}, {\"name\": \"Centauri Media\", \"id\": 26029}]",
+      "[{\"iso_3166_1\": \"CH\", \"name\": \"Switzerland\"}]",
+      "2009-09-24",
+      0,
+      120,
+      "[{\"iso_639_1\": \"fr\", \"name\": \"Fran\u00e7ais\"}, {\"iso_639_1\": \"de\", \"name\": \"Deutsch\"}]",
+      "Released", ,
+      "Cargo",
+      5.9,
+      140
     ];
 
   beforeEach(done => {
@@ -58,4 +79,20 @@ describe("Seed movies", ()=> {
       });
     });
   });
+
+  it("should parse row with multiple homepages", (done)=> {
+    MoviesMapper.createMovie(rowWithMultipleHomepages).then(()=> {
+      Movie.find({}).then(movies => {
+        const createdMovie = movies[0];
+        expect(createdMovie).to.include({
+          title       : 'Cargo',
+          movieId     : 34069,
+          homepage    : 'http://www.cargoderfilm.ch'
+        });
+
+        done();
+      });
+    });
+  });
+
 });

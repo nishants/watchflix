@@ -22,7 +22,7 @@ var MovieSchema = new mongoose.Schema({
     type    : String,
     trim    : true,
     validate: {
-      validator : validator.isURL,
+      validator : (value)=> !value.trim().length || validator.isURL(value),
       message   : 'expected {VALUE} to be a valid URL'
     }
   },
@@ -31,14 +31,13 @@ var MovieSchema = new mongoose.Schema({
     required: true,
   },
   runtime: {
-    type    : Number,
-    required: true
+    type    : Number
   },
   releaseDate: {
     type: String,
     trim: true,
     validate: {
-      validator : (date)=>  /(\d{4})-(\d{2})-(\d{2})/.test(date),
+      validator : (date)=>  !date.trim().length || /(\d{4})-(\d{2})-(\d{2})/.test(date),
       message   : 'expected {VALUE} to be a valid YYYY-MM-DD string'
     }
   },
