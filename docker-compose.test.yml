@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  whatflix:
+    build:
+      context: .
+    image: whatflix:latest
+
+    volumes:
+      - .:/app
+      - /app/node_modules/
+    env_file:
+      - env/test.env
+    links:
+      - mongo
+    command:
+      - /bin/bash
+      - -c
+      - yarn --pure-lockfile && yarn test-watch
+  mongo:
+    image: "mongo:3.6.3"
+    ports:
+      - "27018:27018"
