@@ -1,9 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const {ObjectID} = require('mongodb');
 
 const
-  Page = require('./models/page'),
   User = require('./models/user');
 
 const
