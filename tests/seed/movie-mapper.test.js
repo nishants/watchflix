@@ -1,7 +1,9 @@
 const
   {expect} = require('chai'),
-  MoviesMapper = require('../../app/models/movie-mapper'),
+  MoviesMapper = require('../../app/seed/movies/movie-mapper'),
   Movie = require('../../app/models/movie');
+
+require('../../app/db');
 
 describe("Seed movies", ()=> {
   const

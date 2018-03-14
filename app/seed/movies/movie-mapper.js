@@ -1,5 +1,5 @@
 const
-  Movie = require('./movie'),
+  Movie = require('./../../models/movie'),
   mapRowToModle = ()=> {}
 
 module.exports = {
