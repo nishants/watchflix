@@ -49,6 +49,12 @@ var MovieSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  languages: [{
+    id: {
+      type: String,
+      required: true
+    }
+  }],
   actors: [{
     name: {
       type: String,
@@ -71,15 +77,3 @@ MovieSchema.methods.setCredits = function(credits){
 };
 
 module.exports = mongoose.model('Movie', MovieSchema);
-
-/*
-* Fields
-* - homepage
-* - tagline
-* - status
-* - runtime
-* - release_date
-* - overview
-* - original_language
-* - keywords
-* */

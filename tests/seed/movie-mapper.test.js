@@ -74,7 +74,8 @@ describe("Seed movies", ()=> {
           overview    : 'Avatar overview',
           originalLanguage: 'en',
         });
-
+        const languages = createdMovie.languages.map(lang => ({id: lang.id}));
+        expect(languages).to.eql([{id: 'en'}, {id: 'es'}]);
         done();
       });
     });

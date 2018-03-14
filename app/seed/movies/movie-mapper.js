@@ -13,6 +13,7 @@ module.exports = {
       releaseDate : csvRow[11],
       overview    : csvRow[7],
       originalLanguage: csvRow[5],
+      languages   : JSON.parse(csvRow[14]).map(lang => ({id: lang.iso_639_1}))
     }).save();
   }
 };
