@@ -48,8 +48,27 @@ var MovieSchema = new mongoose.Schema({
   originalLanguage: {
     type: String,
     trim: true,
-  }
+  },
+  actors: [{
+    name: {
+      type: String,
+      required: true
+    }
+  }],
+  directors : [{
+    name: {
+      type: String,
+      required: true
+    }
+  }]
 });
+
+MovieSchema.methods.setCredits = function(credits){
+  const movie = this;
+  movie.actors    = movie.actors.concat(credits.actors);
+  movie.directors = movie.directors.concat(credits.directors);
+  return movie.save();
+};
 
 module.exports = mongoose.model('Movie', MovieSchema);
 

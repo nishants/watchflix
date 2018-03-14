@@ -16,7 +16,7 @@ require('../../db');
       const isHeader = data[0] === 'budget';
       !isHeader && MoviesMapper.createMovie(data).catch(error => {
         errors++;
-        console.error("------------ Error ---------------")
+        console.error("------------ Error ---------------");
         console.error(data);
         console.error(error);
       });
