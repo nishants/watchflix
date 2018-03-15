@@ -76,4 +76,19 @@ MovieSchema.methods.setCredits = function(credits){
   return movie.save();
 };
 
+MovieSchema.methods.preview = function(credits){
+  const
+    movie       = this,
+    title       = movie.title,
+    movieId     = movie.movieId,
+    tagline     = movie.tagline,
+    homepage    = movie.homepage,
+    released    = movie.released,
+    overview    = movie.overview,
+    runtime     = movie.runtime,
+    releaseDate = movie.releaseDate;
+
+  return {title, movieId, tagline, homepage, released, overview, runtime, releaseDate};
+};
+
 module.exports = mongoose.model('Movie', MovieSchema);
