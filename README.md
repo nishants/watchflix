@@ -5,6 +5,7 @@
 ```bash
 yarn seed -- --movies=path/to/file.csv'
 ```
+
 ### 2. Setup credits seed
 ```bash
 yarn seed -- --credits=path/to/file.csv'
@@ -16,8 +17,6 @@ Run development server with docker
 bash bin/development.sh
 ```
 
-
-
 Running withour docker :
   - Set the mongo db uri
-  ``` export  MONGODB_URI="mongodb://localhost:27017/whatflix" ```
+  ``` export  MONGODB_URI="mongodb://localhost:27017/watchflix" ```
