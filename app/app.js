@@ -38,4 +38,17 @@ app.get('/movies/user/:userId/search', (request, response)=> {
     response.status(500).send({error: error.message});
   });
 });
+
+app.get('/movies/users', (request, response)=> {
+  const
+    page = Page.forRequest(request),
+    onError = (error)=> response.status(400).send({error: error.message});
+
+  User.getAllByPage(page).then(users => {
+    SearchMovies.getPreferencesFor(users).then(userPreferences => {
+      response.send({page, userPreferences});
+    }).catch(onError);
+  }).catch(onError);
+});
+
 module.exports = app;

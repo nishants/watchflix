@@ -55,6 +55,52 @@ const SearchMovies = {
           return resolve(movies.map(movie => movie.preview()));
         });
     });
+  },
+
+  preferredMovies: (languages, actors, directors, page)=> {
+    return new Promise((resolve, reject)=> {
+      Movie.find(
+        {
+          $or: [
+            {'actors.name'   : {$in: actors}},
+            {'directors.name': {$in: directors}}
+          ],
+          $and: [
+            {'languages.id'  : {$in: languages}}
+          ]
+        }
+      ).skip(page.index * page.size)
+        .limit(page.size)
+        .sort({title: 1})
+        .exec(function (error, movies) {
+          if (error) {
+            return reject(error);
+          }
+          return resolve(movies.map(movie => movie.preview()));
+        });
+
+    });
+  },
+
+  getPreferencesFor: (users)=> {
+    const
+      promises = [],
+      preferences = [];
+    users.forEach(user =>  {
+      promises.push(
+        SearchMovies.preferredMovies(
+          user.languages.map(lang => lang.id),
+          user.favoriteActors.map(actor => actor.name),
+          user.favoriteDirectors.map(director => director.name),
+          {size: 3, index: 0}
+        ).then(movies => preferences.push({
+            user: user.userId,
+            movies: movies.map(movie => movie.title)
+          })));
+    });
+    return Promise.all(promises).then(()=>{
+      return preferences;
+    });
   }
 };
 
