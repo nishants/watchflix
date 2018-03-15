@@ -25,7 +25,15 @@ app.get('/movies/user/:userId/search', (request, response)=> {
     page   = Page.forRequest(request);
 
   SearchMovies.searchForUser(userId, text, page).then(movies => {
-    response.send({movies});
+    if(movies.length) {
+      response.send({movies});
+    }else{
+      SearchMovies.searchForText(text, page).then(movies => {
+        response.send({movies});
+      }).catch((error)=> {
+        response.status(500).send({error: error.message});
+      });
+    }
   }).catch((error)=> {
     response.status(500).send({error: error.message});
   });

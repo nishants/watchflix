@@ -28,6 +28,7 @@ const SearchMovies = {
 
     });
   },
+
   searchForUser: (userId, text, page)=> {
     return User.findByUserId(userId).then(user => {
       return SearchMovies.searchByPreference(
@@ -37,6 +38,22 @@ const SearchMovies = {
         text.map(phrase=> `\"${phrase}\"`).join(),
         page
       );
+    });
+  },
+
+  searchForText: (text, page)=> {
+    return new Promise((resolve, reject)=> {
+      Movie.find(
+        {$text: {$search: text.map(phrase=> `\"${phrase}\"`).join()}}
+      ).skip(page.index * page.size)
+        .limit(page.size)
+        .sort({title: 1})
+        .exec(function (error, movies) {
+          if (error) {
+            return reject(error);
+          }
+          return resolve(movies.map(movie => movie.preview()));
+        });
     });
   }
 };
