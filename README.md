@@ -11,6 +11,11 @@ yarn seed -- --movies=path/to/file.csv'
 yarn seed -- --credits=path/to/file.csv'
 ```
 
+### 3. Seed users
+```
+yarn seed -- --users=path/to/file.json'
+```
+
 Running with docker
 Run development server with docker
 ```bash
