@@ -27,7 +27,7 @@ app.get('/movies/user/:userId/search', (request, response)=> {
   SearchMovies.searchForUser(userId, text, page).then(movies => {
     response.send({movies});
   }).catch((error)=> {
-    response.status(500).send({error});
+    response.status(500).send({error: error.message});
   });
 });
 module.exports = app;

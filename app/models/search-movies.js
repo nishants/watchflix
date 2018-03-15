@@ -13,7 +13,7 @@ const SearchMovies = {
           ],
           $and: [
             {'languages.id'  : {$in: languages}},
-            { $text          : { $search: text.join() }}
+            { $text          : { $search: text }}
           ]
         }
       ).skip(page.index * page.size)
@@ -34,7 +34,7 @@ const SearchMovies = {
         user.languages.map(lang => lang.id),
         user.favoriteActors.map(actor => actor.name),
         user.favoriteDirectors.map(director => director.name),
-        text,
+        text.map(phrase=> `\"${phrase}\"`).join(),
         page
       );
     });
