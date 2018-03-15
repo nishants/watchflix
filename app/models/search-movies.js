@@ -12,7 +12,14 @@ const SearchMovies = {
             {'directors.name': {$in: directors}}
           ],
           $and: [
-            {'languages.id'  : {$in: languages}}
+            {'languages.id'  : {$in: languages}},
+            { $text: { $search: text.join() }},
+            //{'title'         : {$in: text}},
+            //{$or: [
+            //  {'actors.name'   : {$in: text}},
+            //  {'directors.name': {$in: text}},
+            //  {'title'         : {$in: text}}
+            //]}
           ]
         }
       ).skip(page.index * page.size)

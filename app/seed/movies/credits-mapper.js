@@ -10,7 +10,7 @@ module.exports = {
       var directorsJson = csvRow[3];
       const
         actors = JSON.parse(actorsJSOn),
-        directors = JSON.parse(directorsJson);
+        directors = JSON.parse(directorsJson).filter(crew => crew.job === 'Director');
 
       return movie.setCredits({actors, directors});
     });

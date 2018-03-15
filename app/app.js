@@ -21,7 +21,7 @@ app.listen(port, ()=> {
 app.get('/movies/user/:userId/search', (request, response)=> {
   const
     userId = request.params.userId,
-    text   = request.query.text,
+    text   = request.query.text.split(','),
     page   = Page.forRequest(request);
 
   SearchMovies.searchForUser(userId, text, page).then(movies => {

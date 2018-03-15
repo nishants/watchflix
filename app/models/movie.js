@@ -69,6 +69,13 @@ var MovieSchema = new mongoose.Schema({
   }]
 });
 
+MovieSchema.index(
+  {'title': 'text', 'actors.name': 'text', 'directors.name': 'text'},
+  {
+    name: 'searchIndex',
+    weights: {title: 10, 'actors.name': 7, 'directors.name': 7}
+});
+
 MovieSchema.methods.setCredits = function(credits){
   const movie = this;
   movie.actors    = movie.actors.concat(credits.actors);
