@@ -1,12 +1,10 @@
 const
   defaultPageSize = 10,
   Page = (size, index)=> {
-    const page = {
+    return {
       size,
-      index,
-      count: (count)=> ({...page, maxPage: parseInt((count - 1) / size)})
+      index
     };
-    return page;
   };
 
 module.exports = {
