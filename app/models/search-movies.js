@@ -13,18 +13,12 @@ const SearchMovies = {
           ],
           $and: [
             {'languages.id'  : {$in: languages}},
-            { $text: { $search: text.join() }},
-            //{'title'         : {$in: text}},
-            //{$or: [
-            //  {'actors.name'   : {$in: text}},
-            //  {'directors.name': {$in: text}},
-            //  {'title'         : {$in: text}}
-            //]}
+            { $text          : { $search: text.join() }}
           ]
         }
       ).skip(page.index * page.size)
         .limit(page.size)
-        //.sort({_id: 1})
+        .sort({title: 1})
         .exec(function (error, movies) {
           if (error) {
             return reject(error);
