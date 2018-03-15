@@ -10,8 +10,8 @@ describe("Seed movies", ()=> {
     validCreditsRow = [
       19995,
       'Avatar',
-      '[{""cast_id"": 242, ""character"": ""Jake Sully"", ""credit_id"": ""5602a8a7c3a3685532001c9a"", ""gender"": 2, ""id"": 65731, ""name"": ""Sam Worthington"", ""order"": 0}]',
-      '[{""credit_id"": ""52fe48009251416c750aca23"", ""department"": ""Editing"", ""gender"": 0, ""id"": 1721, ""job"": ""Director"", ""name"": ""Stephen E. Rivkin""}]'
+      "[{\"cast_id\": 242, \"character\": \"Jake Sully\", \"credit_id\": \"5602a8a7c3a3685532001c9a\", \"gender\": 2, \"id\": 65731, \"name\": \"Sam Worthington\", \"order\": 0}]",
+      "[{\"credit_id\": \"52fe48009251416c750aca23\", \"department\": \"Editing\", \"gender\": 0, \"id\": 1721, \"job\": \"Director\", \"name\": \"Stephen E. Rivkin\"}]"
     ];
 
   beforeEach(done => {
