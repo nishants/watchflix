@@ -1,9 +1,14 @@
 [![Build Status](https://travis-ci.org/nishants/node-playground.svg?branch=master)](https://travis-ci.org/nishants/node-playground)
 
 TODO : 
+- fix docker build
 - update boilerplate form Ikgai
 - update node to 11
 - Use async for all controller functions
+- Add elastic search
+- Add redis
+- Add kafka
+- Add workers
 - add full data to .gitignore 
 
 # todo 
@@ -13,7 +18,7 @@ TODO :
 # DB Setup
 ### 1. Setup movies seed
 ```bash
-yarn seed -- --movies=path/to/file.csv'
+yarn seed -- --movies=path/to/file.csv
 ```
 
 ### 2. Setup credits seed
@@ -48,8 +53,5 @@ yarn seed -- --credits=resources/credits-data.csv
 yarn start
 ```
 
-Load testing with Javascript 
-
-https://artillery.io/docs/basic-concepts/
-
-
+- Load testing with Javascript : https://artillery.io/docs/basic-concepts/
+- Hosted elastic search : https://bonsai.io/pricing

@@ -4,5 +4,7 @@ WORKDIR /app
 ADD package.json yarn.lock /app/
 RUN yarn --pure-lockfile
 COPY . /app/
-EXPOSE 4040
+COPY . /resources/
+
+EXPOSE 3000
 CMD [ "yarn", "start" ]

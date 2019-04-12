@@ -13,7 +13,14 @@ services:
       - env/dev.env
     links:
       - mongo
+    command:
+      - /bin/sh
+      - -c
+      - yarn seed -- --movies=resources/sample-movie-data.csv --users=resources/user-preference.js --credits=resources/sample-credits-data.csv && yarn start
+
   mongo:
     image: "mongo:4.0.5"
     ports:
       - "27017:27017"
+    volumes:
+      - './data:/data/db'
