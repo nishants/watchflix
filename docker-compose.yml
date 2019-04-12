@@ -3,9 +3,9 @@ version: '3'
 services:
   watchflix:
     build:
-      context: .
+      context: ./api
     volumes:
-      - .:/app
+      - ./api:/app
       - /app/node_modules/
     ports:
       - "3000:3000"

@@ -3,18 +3,17 @@ version: '3'
 services:
   watchflix:
     build:
-      context: .
+      context: ./api
     image: watchflix:latest
-
     volumes:
-      - .:/app
+      - ./api:/app
       - /app/node_modules/
     env_file:
       - env/test.env
     links:
       - mongo
     command:
-      - /bin/bash
+      - /bin/sh
       - -c
       - yarn --pure-lockfile && yarn test-watch
   mongo:
