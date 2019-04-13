@@ -1,9 +1,10 @@
-version: '3'
+version: '3.4'
 
 services:
   watchflix:
     build:
       context: ./api
+      target: ci
     image: watchflix:latest
     volumes:
       - ./api:/app
@@ -15,7 +16,7 @@ services:
     command:
       - /bin/sh
       - -c
-      - yarn --pure-lockfile && yarn test
+      - yarn --pure-lockfile && yarn test:ci
   mongo:
     image: "mongo:4.0.5"
     ports:
