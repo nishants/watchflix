@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nishants/node-playground.svg?branch=master)](https://travis-ci.org/nishants/node-playground)
+[![Build Status](https://travis-ci.com/nishants/watchflix.svg?branch=master)](https://travis-ci.org/nishants/node-playground)
 
 TODO : 
 - fix docker build
@@ -11,7 +11,9 @@ TODO :
 - Add workers
 - add full data to .gitignore 
 - add jwt auth
-
+- add logstash with kibana ui
+- worker task can also run as cron : https://www.npmjs.com/package/node-schedule
+https://api.travis-ci.com/nishants/watchflix.svg?branch=master
 # todo 
 - use redis for session
 - use worker for user preferences 
