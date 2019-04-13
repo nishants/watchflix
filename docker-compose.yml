@@ -16,7 +16,7 @@ services:
     command:
       - /bin/sh
       - -c
-      - yarn seed -- --movies=resources/sample-movie-data.csv --users=resources/user-preference.js --credits=resources/sample-credits-data.csv && yarn start
+      - yarn seed -- --movies=resources/movie-data.csv --users=resources/user-preference.js --credits=resources/credits-data.csv && yarn run-watch
 
   mongo:
     image: "mongo:4.0.5"
