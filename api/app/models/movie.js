@@ -70,11 +70,11 @@ var MovieSchema = new mongoose.Schema({
 });
 
 MovieSchema.index(
-  {'title': 'text', 'actors.name': 'text', 'directors.name': 'text'},
+  { 'title': 'text', 'actors.name': 'text', 'directors.name': 'text' },
   {
     name: 'searchIndex',
-    weights: {title: 10, 'actors.name': 7, 'directors.name': 7}
-});
+    weights: { title: 10, 'actors.name': 7, 'directors.name': 7 }
+  });
 
 MovieSchema.methods.setCredits = function(credits){
   const movie = this;
@@ -83,7 +83,7 @@ MovieSchema.methods.setCredits = function(credits){
   return movie.save();
 };
 
-MovieSchema.methods.preview = function(credits){
+MovieSchema.methods.preview = function(){
   const
     movie       = this,
     title       = movie.title,

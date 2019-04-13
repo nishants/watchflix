@@ -13,7 +13,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "cd .. && ./bin/ci.sh"
+      "pre-commit": "yarn lint && cd .. && ./bin/ci.sh"
     }
   },
   "engines": {

@@ -10,6 +10,7 @@ TODO :
 - Add kafka
 - Add workers
 - add full data to .gitignore 
+- add jwt auth
 
 # todo 
 - use redis for session

@@ -1,7 +1,5 @@
 const
-  mongoose = require('mongoose'),
-  validator = require('validator'),
-  jwt = require('jsonwebtoken');
+  mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
   userId: {
@@ -37,7 +35,7 @@ UserSchema.statics.getAllByPage = function(page){
       .exec(function (error, users) {
         if (error) {
           return reject(error);
-        };
+        }
         resolve(users);
       });
   });

@@ -35,7 +35,7 @@ const SearchMovies = {
         user.languages.map(lang => lang.id),
         user.favoriteActors.map(actor => actor.name),
         user.favoriteDirectors.map(director => director.name),
-        text.map(phrase=> `\"${phrase}\"`).join(),
+        text.map(phrase=> `"${phrase}"`).join(),
         page
       );
     });
@@ -44,7 +44,7 @@ const SearchMovies = {
   searchForText: (text, page)=> {
     return new Promise((resolve, reject)=> {
       Movie.find(
-        {$text: {$search: text.map(phrase=> `\"${phrase}\"`).join()}}
+        {$text: {$search: text.map(phrase=> `"${phrase}"`).join()}}
       ).skip(page.index * page.size)
         .limit(page.size)
         .sort({title: 1})
@@ -94,9 +94,9 @@ const SearchMovies = {
           user.favoriteDirectors.map(director => director.name),
           {size: 3, index: 0}
         ).then(movies => preferences.push({
-            user: user.userId,
-            movies: movies.map(movie => movie.title)
-          })));
+          user: user.userId,
+          movies: movies.map(movie => movie.title)
+        })));
     });
     return Promise.all(promises).then(()=>{
       return preferences;

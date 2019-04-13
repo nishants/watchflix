@@ -3,8 +3,7 @@ const
 
 module.exports = {
   setCredits: (csvRow) => {
-    const movieId = parseInt(csvRow[0]),
-      toValidJSONString = (text) => text.replace(/\"\"/g, '"');
+    const movieId = parseInt(csvRow[0]);
     return Movie.findOne({movieId}).then(movie => {
       var actorsJSOn = csvRow[2];
       var directorsJson = csvRow[3];

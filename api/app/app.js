@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 
 const
   Page = require('./models/page'),
-  Movie = require('./models/movie'),
   User = require('./models/user'),
   SearchMovies = require('./models/search-movies');
 
@@ -14,18 +13,19 @@ const
 require('./db');
 app.use(bodyParser.json());
 
-app.listen(port, ()=> {
-  //console.log(`running on ${port}`);
+app.listen(port, () => {
+  // eslint-disable-next-line no-console
+  console.log(`running on ${port}`);
 });
 
-app.get('/movies/user/:userId/search', (request, response)=> {
+app.get('/movies/user/:userId/search', (request, response) => {
   const
     userId = request.params.userId,
-    text   = request.query.text.split(','),
-    page   = Page.forRequest(request),
+    text = request.query.text.split(','),
+    page = Page.forRequest(request),
 
-    sendMovies = movies => response.send({page, movies}),
-    sendError  = error  => response.status(400).send({error: error.message});
+    sendMovies = movies => response.send({ page, movies }),
+    sendError = error => response.status(400).send({ error: error.message });
 
   SearchMovies.searchForUser(userId, text, page).then(movies => {
     movies.length ?
@@ -34,13 +34,13 @@ app.get('/movies/user/:userId/search', (request, response)=> {
   }).catch(sendError);
 });
 
-app.get('/movies/users', (request, response)=> {
+app.get('/movies/users', (request, response) => {
   const
     page = Page.forRequest(request),
     sendPreferences = userPreferences => {
-      response.send({page, userPreferences});
-    };
-    onError = (error)=> response.status(400).send({error: error.message});
+      response.send({ page, userPreferences });
+    },
+    onError = (error) => response.status(400).send({ error: error.message });
 
   User.getAllByPage(page).then(users => {
     SearchMovies.getPreferencesFor(users).then(sendPreferences).catch(onError);
