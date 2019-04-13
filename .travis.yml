@@ -1,8 +1,8 @@
 env:
 - DOCKER_COMPOSE_VERSION=1.4.2
 script:
-  - chmod 777 ./bing/test.sh
-  - sh ./bing/test.sh
+  - chmod 777 ./bin/ci.sh
+  - sh ./bin/ci.sh
 
 #
 #language: node_js
