@@ -83,6 +83,12 @@ MovieSchema.methods.setCredits = function(credits){
   return movie.save();
 };
 
+MovieSchema.methods.elasticData = function(){
+  return {
+    index: 'movies', id: this._id, body: {...this, _id: undefined}
+  };
+};
+
 MovieSchema.methods.preview = function(){
   const
     movie       = this,

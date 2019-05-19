@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const
+  elasticSearchClient = require('./elastic-search-client'),
   Page = require('./models/page'),
   User = require('./models/user'),
   SearchMovies = require('./models/search-movies');
@@ -16,6 +17,10 @@ app.use(bodyParser.json());
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`running on ${port}`);
+});
+
+app.get('/ping', (request, response) => {
+  response.send({ message: 'hello' });
 });
 
 app.get('/movies/user/:userId/search', (request, response) => {
@@ -44,6 +49,16 @@ app.get('/movies/users', (request, response) => {
 
   User.getAllByPage(page).then(users => {
     SearchMovies.getPreferencesFor(users).then(sendPreferences).catch(onError);
+  }).catch(onError);
+});
+
+app.get('/search', (request, response) => {
+  const
+    text = (request.query.text || '').split(',').pop(),
+    onError = (error) => response.status(500).send({ error: error.message });
+  elasticSearchClient.search({ index: 'movies', body: { query: { match: { title: text } } } }).then(r => {
+    const result = JSON.stringify(r.body.hits.hits.map(a => a._source));
+    response.send({result});
   }).catch(onError);
 });
 

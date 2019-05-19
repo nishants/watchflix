@@ -1,5 +1,14 @@
 [![Build Status](https://travis-ci.com/nishants/watchflix.svg?branch=master)](https://travis-ci.org/nishants/node-playground)
 
+Todo 
+- create api for add movie, edit movie, delete movie, search movie with elastic search
+- create local elastic search docker image and make it wait before startup 
+- on seeding, reset elastic search data
+
+Elastic setup:  
+- index data on elastic when seeding
+- setup https://blog.patricktriest.com/text-search-docker-elasticsearch/
+
 TODO : 
 - fix docker build
 - update boilerplate form Ikgai
@@ -58,3 +67,6 @@ yarn start
 
 - Load testing with Javascript : https://artillery.io/docs/basic-concepts/
 - Hosted elastic search : https://bonsai.io/pricing
+
+const { Client: Client3 } = require('@elastic/elasticsearch')
+const client12 = new Client3({ node: 'http://localhost:9200' })

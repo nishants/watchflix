@@ -1,5 +1,6 @@
 const
-  Movie = require('./../../models/movie');
+  Movie = require('./../../models/movie'),
+  elasticClient = require('../../elastic-search-client');
 
 module.exports = {
   createMovie: (csvRow)=> {
@@ -14,6 +15,8 @@ module.exports = {
       overview    : csvRow[7],
       originalLanguage: csvRow[5],
       languages   : JSON.parse(csvRow[14]).map(lang => ({id: lang.iso_639_1}))
-    }).save();
+    }).save().then(movie => {
+      return elasticClient.create(movie.elasticData());
+    });
   }
 };
