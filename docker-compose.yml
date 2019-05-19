@@ -1,11 +1,10 @@
 version: '3'
 
 services:
-  watchflix:
+  watchflix-ci:
     build:
       context: ./api
     restart: on-failure
-
     volumes:
       - ./api:/app
       - /app/node_modules/
